@@ -1,6 +1,11 @@
 package _00_Binary_Conversion;
 
-public class Decimal_To_Binary {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class DecimalToBinary {
 	public static void main(String[] args) {
 		//Converting a decimal number to binary is a little trickier.
 		
@@ -31,5 +36,45 @@ public class Decimal_To_Binary {
 		 *         
 		 *         43 in decimal is 101011 in binary!
 		 */
+		String decStr = JOptionPane.showInputDialog("number: ");
+		int decNum = Integer.parseInt(decStr);
+		int greatest = 0;
+		int counter = 0;
+		while (greatest < decNum) {
+			greatest = (int) Math.pow(2, counter);
+			counter++;
+		}
+		greatest = (int) Math.pow(2, counter-2);
+		//System.out.println(greatest);
+		int[] binNum = new int[counter-1];
+		binNum[0] = 1;
+		for (int i=1; i<counter-2; i++) {
+			binNum[i] = 0;
+		}
+		for (int i=counter-3; i>-1; i--) {
+			String num = "";
+			for (int in : binNum) {
+				num = num + in;
+			}
+			//System.out.println(num);
+			int dec = 0;
+			for (int j =0; j<num.length(); j++) {
+				String c = num.substring(num.length()-j-1, num.length()-j);
+				int c1 = Integer.parseInt(c);
+				dec += c1 * Math.pow(2, j);
+			}
+			//System.out.println(dec);
+			if (dec + (int) Math.pow(2, i) <= decNum) {
+				binNum[counter-2-i] = 1;
+			}
+			else {
+				binNum[counter-2-i] = 0;
+			}
+		}
+		String num = "";
+		for (int in : binNum) {
+			num = num + in;
+		}
+		System.out.println(num);
 	}
 }

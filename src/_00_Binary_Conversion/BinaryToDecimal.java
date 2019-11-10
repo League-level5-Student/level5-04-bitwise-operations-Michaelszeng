@@ -1,5 +1,7 @@
 package _00_Binary_Conversion;
 
+import javax.swing.JOptionPane;
+
 public class BinaryToDecimal {
 	public static void main(String[] args) {
 		// Binary numbers in Java can be represented with the '0b' prefix.
@@ -24,6 +26,14 @@ public class BinaryToDecimal {
 				    16 + 4 + 2 = 22
 				    010110 in binary is equal to 22 in decimal!
 		 
-		 */
+		*/
+		String num = JOptionPane.showInputDialog("number: ");
+		int dec = 0;
+		for (int i =0; i<num.length(); i++) {
+			String c = num.substring(num.length()-i-1, num.length()-i);
+			int c1 = Integer.parseInt(c);
+			dec += c1 * Math.pow(2, i);
+		}
+		System.out.println(dec);
 	}
 }
