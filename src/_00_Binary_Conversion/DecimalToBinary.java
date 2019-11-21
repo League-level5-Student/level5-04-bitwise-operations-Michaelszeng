@@ -38,20 +38,43 @@ public class DecimalToBinary {
 		 */
 		String decStr = JOptionPane.showInputDialog("number: ");
 		int decNum = Integer.parseInt(decStr);
-		int greatest = 0;
+		int[] bin = run(decNum);
+		for (int i : bin) {
+			System.out.print(i);
+		}
+	}
+	
+	public static int[] run(int decNum) {
+		double greatest = 0;
 		int counter = 0;
-		while (greatest < decNum) {
-			greatest = (int) Math.pow(2, counter);
+		while (greatest <= decNum) {
+			greatest = Math.pow(2, counter);
 			counter++;
 		}
-		greatest = (int) Math.pow(2, counter-2);
+		greatest = Math.pow(2, counter-2);
 		//System.out.println(greatest);
 		int[] binNum = new int[counter-1];
 		binNum[0] = 1;
-		for (int i=1; i<counter-2; i++) {
-			binNum[i] = 0;
+		
+		int decValueSoFar = (int) Math.pow(2, binNum.length-1);
+		for (int i=1; i<counter-1; i++) {
+			decValueSoFar += Math.pow(2, binNum.length-i-1);
+			if (decValueSoFar == decNum) {
+				binNum[i] = 1;
+				break;
+			}
+			else if (decValueSoFar < decNum) {
+				binNum[i] = 1;
+			}
+			else { //greater than decNum
+				binNum[i] = 0;
+				decValueSoFar -= Math.pow(2, binNum.length-i-1);
+			}
 		}
-		for (int i=counter-3; i>-1; i--) {
+		return binNum;
+		
+		/*
+		for (int i=counter-2; i>-1; i--) {
 			String num = "";
 			for (int in : binNum) {
 				num = num + in;
@@ -63,7 +86,7 @@ public class DecimalToBinary {
 				int c1 = Integer.parseInt(c);
 				dec += c1 * Math.pow(2, j);
 			}
-			//System.out.println(dec);
+			System.out.println(dec);
 			if (dec + (int) Math.pow(2, i) <= decNum) {
 				binNum[counter-2-i] = 1;
 			}
@@ -75,6 +98,6 @@ public class DecimalToBinary {
 		for (int in : binNum) {
 			num = num + in;
 		}
-		System.out.println(num);
+		System.out.println(num); */
 	}
 }
