@@ -7,7 +7,7 @@ public class BitShifter {
 	public static void main(String[] args) {
 		// 1. Jot down the value of num in binary.
 		int num = 39;
-		int numShifted = num << 2;
+		int numShifted = num << 2; //39 << 2 = 156;  100111 --> 10011100
 		int[] numBin = DecimalToBinary.run(num);
 		// 2. Print the value of numShifted, and convert that value to binary.
 		System.out.println(num);

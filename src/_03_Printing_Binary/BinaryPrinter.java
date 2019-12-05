@@ -11,39 +11,107 @@ public class BinaryPrinter {
 	
 	public static void main(String[] args) {
 		printByteBinary((byte) 127);
-		System.out.println();
+		//System.out.println();
 		printShortBinary((short) 31456);
-		System.out.println();
+		//System.out.println();
 		printIntBinary(234685);
-		System.out.println();
+		//System.out.println();
 		printLongBinary(46456872);
 	}
 	
 	public static void printByteBinary(byte b) {
-		int[] dec = DecimalToBinary.run(b);
-		for (int i1 : dec) {
-			System.out.print(i1);
+		int binTesterLength = 0;
+		while(Math.pow(2, binTesterLength) < b) {
+			binTesterLength++;
 		}
+		////System.out.println(Math.pow(2, binTesterLength-1));
+		int binTesterInt = (int) Math.pow(2, binTesterLength-1);
+		String binB = "";
+		while (binTesterInt > 0) {
+			//System.out.println(binTesterInt);
+			int result = binTesterInt & b;
+			////System.out.println(result);
+			if (result > 0) {
+				binB += "1";
+			}
+			else {
+				binB += "0";
+			}
+			binTesterInt = binTesterInt >> 1;
+			////System.out.println(binTester);
+		}
+		System.out.println(binB);
 	}
 	
 	public static void printShortBinary(short s) {
-		int[] dec = DecimalToBinary.run(s);
-		for (int i1 : dec) {
-			System.out.print(i1);
+		int binTesterLength = 0;
+		while(Math.pow(2, binTesterLength) < 2) {
+			binTesterLength++;
 		}
+		////System.out.println(Math.pow(2, binTesterLength-1));
+		int binTesterInt = (int) Math.pow(2, binTesterLength-1);
+		String binB = "";
+		while (binTesterInt > 0) {
+			//System.out.println(binTesterInt);
+			int result = binTesterInt & 2;
+			////System.out.println(result);
+			if (result > 0) {
+				binB += "1";
+			}
+			else {
+				binB += "0";
+			}
+			binTesterInt = binTesterInt >> 1;
+			////System.out.println(binTester);
+		}
+		System.out.println(binB);
 	}
 	
 	public static void printIntBinary(int i) {
-		int[] dec = DecimalToBinary.run(i);
-		for (int i1 : dec) {
-			System.out.print(i1);
+		int binTesterLength = 0;
+		while(Math.pow(2, binTesterLength) < i) {
+			binTesterLength++;
 		}
+		////System.out.println(Math.pow(2, binTesterLength-1));
+		int binTesterInt = (int) Math.pow(2, binTesterLength-1);
+		String binB = "";
+		while (binTesterInt > 0) {
+			//System.out.println(binTesterInt);
+			int result = binTesterInt & i;
+			////System.out.println(result);
+			if (result > 0) {
+				binB += "1";
+			}
+			else {
+				binB += "0";
+			}
+			binTesterInt = binTesterInt >> 1;
+			////System.out.println(binTester);
+		}
+		System.out.println(binB);
 	}
 	
 	public static void printLongBinary(long l) {
-		int[] dec = DecimalToBinary.run((int) l);
-		for (int i1 : dec) {
-			System.out.print(i1);
+		int binTesterLength = 0;
+		while(Math.pow(2, binTesterLength) < l) {
+			binTesterLength++;
 		}
+		////System.out.println(Math.pow(2, binTesterLength-1));
+		int binTesterInt = (int) Math.pow(2, binTesterLength-1);
+		String binB = "";
+		while (binTesterInt > 0) {
+			//System.out.println(binTesterInt);
+			long result = binTesterInt & l;
+			////System.out.println(result);
+			if (result > 0) {
+				binB += "1";
+			}
+			else {
+				binB += "0";
+			}
+			binTesterInt = binTesterInt >> 1;
+			////System.out.println(binTester);
+		}
+		System.out.println(binB);
 	}
 }
