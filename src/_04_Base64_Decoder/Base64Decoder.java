@@ -62,9 +62,9 @@ public class Base64Decoder {
 		bytes[1] = (byte) ((convertBase64Char(chars[1]) << 4) + (convertBase64Char(chars[2]) >> 2));
 		bytes[2] = (byte) ((convertBase64Char(chars[2]) << 6) + (convertBase64Char(chars[3])));
 		
-		for (byte b : bytes) {
-			System.out.println(b);
-		}
+//		for (byte b : bytes) {
+//			System.out.println(b);
+//		}
 		return bytes;
 	}
 	
@@ -76,9 +76,9 @@ public class Base64Decoder {
 		for (int i=0; i<num; i++) {
 			byte[] bytes2 = convert4CharsTo24Bits(file.substring(4*i, 4*i+4));
 			for (int j=0; j<3; j++) {
-				bytes[i] = bytes2[j];
+				bytes[(i * 3) + j] = bytes2[j];
 			}
 		}
-		return null;
+		return bytes;
 	}
 }
